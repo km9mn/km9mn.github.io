@@ -1,15 +1,28 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
 
   <title>Kyumin Kim</title>
-
   <meta name="author" content="Kyumin Kim">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Kyumin Kim is an AI researcher at LG CNS working on agentic AI: tool calling, synthetic training data, and evaluation for LLM agents.">
+  <meta property="og:title" content="Kyumin Kim">
+  <meta property="og:description"
+    content="AI researcher at LG CNS working on tool calling, synthetic training data, and evaluation for LLM agents.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://km9mn.github.io/">
+  <meta property="og:image" content="https://km9mn.github.io/images/profile.jpg">
+
   <link rel="shortcut icon" href="images/soju.ico" type="image/x-icon">
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&display=swap">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KD4293DMLS"></script>
@@ -21,313 +34,1136 @@
     gtag('config', 'G-KD4293DMLS');
   </script>
 
+  <script>
+    // Animations are opt-in: without JS, or with reduced motion, the page is fully static.
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('motion');
+    }
+  </script>
+
+  <style>
+    /* ----------------------------------------------------------------------
+       Tokens
+       ---------------------------------------------------------------------- */
+    :root {
+      --bg: #F6F8FB;
+      --surface: #FFFFFF;
+      --ink: #132238;
+      --muted: #56677D;
+      --line: #D3DCE8;
+      --accent: #2145C4;
+      --done: #1B8557;
+
+      --display: "Bricolage Grotesque", "Helvetica Neue", Arial, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      --text: "Source Serif 4", Charter, "Iowan Old Style", Georgia, "Apple SD Gothic Neo", "Malgun Gothic", serif;
+
+      --page: 66rem;
+      --rail: 11rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #0C141F;
+        --surface: #152235;
+        --ink: #E8EEF6;
+        --muted: #9BAABD;
+        --line: #283A52;
+        --accent: #93AEFF;
+        --done: #62D49E;
+      }
+    }
+
+    /* ----------------------------------------------------------------------
+       Base
+       ---------------------------------------------------------------------- */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--text);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      font-optical-sizing: auto;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    p {
+      margin: 0 0 1em;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.18em;
+    }
+
+    a:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      max-width: var(--page);
+      margin: 0 auto;
+      padding: clamp(2rem, 6vw, 5rem) clamp(1.25rem, 5vw, 3rem) 3rem;
+    }
+
+    /* ----------------------------------------------------------------------
+       Hero
+       ---------------------------------------------------------------------- */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: end;
+      padding-bottom: clamp(2.5rem, 6vw, 4.5rem);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 800;
+      font-stretch: 92%;
+      font-size: clamp(3.2rem, 10.5vw, 7.25rem);
+      line-height: 0.92;
+      letter-spacing: -0.015em;
+    }
+
+    .hero-lede {
+      margin: 1.5rem 0 0;
+      max-width: 34rem;
+      font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+      line-height: 1.45;
+    }
+
+    .hero-now {
+      display: flex;
+      align-items: baseline;
+      gap: 0.7rem;
+      margin: 1.1rem 0 0;
+      max-width: 34rem;
+      color: var(--muted);
+      font-family: var(--display);
+      font-size: 0.98rem;
+      line-height: 1.45;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem 1.4rem;
+      margin: 2rem 0 0;
+      padding: 0;
+      list-style: none;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 0.98rem;
+    }
+
+    .hero-links a {
+      color: var(--ink);
+    }
+
+    .hero-links a:hover {
+      color: var(--accent);
+    }
+
+    .hero-links .cv {
+      display: inline-block;
+      padding: 0.55rem 1.05rem;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--bg);
+      text-decoration: none;
+    }
+
+    .hero-links .cv:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .hero-photo {
+      width: clamp(9rem, 22vw, 15rem);
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 1.75rem;
+    }
+
+    /* The "current step" marker: used in the hero and on the first timeline entry */
+    .live {
+      flex: none;
+      display: inline-block;
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: live 2.4s ease-out infinite;
+    }
+
+    @keyframes live {
+      0% {
+        box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent);
+      }
+
+      70% {
+        box-shadow: 0 0 0 0.6rem color-mix(in srgb, var(--accent) 0%, transparent);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent);
+      }
+    }
+
+    /* ----------------------------------------------------------------------
+       Sections: heading in the left rail, content on the right
+       ---------------------------------------------------------------------- */
+    .block {
+      display: grid;
+      grid-template-columns: var(--rail) minmax(0, 1fr);
+      gap: 0 clamp(1.5rem, 4vw, 3rem);
+      padding: clamp(2.25rem, 5vw, 3.5rem) 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .block>h2 {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      position: sticky;
+      top: 1.5rem;
+      align-self: start;
+    }
+
+    .prose {
+      max-width: 41rem;
+    }
+
+    /* ----------------------------------------------------------------------
+       Publications
+       ---------------------------------------------------------------------- */
+    .pubs {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pub {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 14.5rem;
+      gap: 1rem 2rem;
+      align-items: start;
+      padding: 1.75rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .pub:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .pub.no-figure {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pub.no-figure .pub-body {
+      max-width: 41rem;
+    }
+
+    .pub-venue {
+      margin: 0 0 0.35rem;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+
+    .pub-venue span {
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .pub-title {
+      margin: 0 0 0.45rem;
+      font-family: var(--text);
+      font-weight: 650;
+      font-size: 1.2rem;
+      line-height: 1.35;
+      letter-spacing: -0.005em;
+    }
+
+    .pub-title a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .pub-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .pub-authors {
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .pub-authors a {
+      color: inherit;
+    }
+
+    .pub-authors strong {
+      color: var(--ink);
+      font-weight: 650;
+    }
+
+    .pub-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 1.1rem;
+      margin: 0.7rem 0 0;
+      padding: 0;
+      list-style: none;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    .pub-figure {
+      display: block;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 0.5rem;
+      background: #FFFFFF;
+      /* paper figures are drawn on white, in both themes */
+      cursor: zoom-in;
+    }
+
+    .pub-figure:hover {
+      border-color: var(--accent);
+    }
+
+    .pub-figure img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .pub-figure .fit {
+      object-fit: contain;
+      padding: 0.6rem;
+    }
+
+    .pub-figure .crop {
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .footnote {
+      margin: 1.5rem 0 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* ----------------------------------------------------------------------
+       Experience: a step trace. The open step pulses, finished steps are checked.
+       ---------------------------------------------------------------------- */
+    .trace {
+      --node: 1.375rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .step {
+      position: relative;
+      padding: 0 0 2rem calc(var(--node) + 1.25rem);
+    }
+
+    .step:last-child {
+      padding-bottom: 0;
+    }
+
+    /* the line joining one step to the next */
+    .step::before {
+      content: "";
+      position: absolute;
+      left: calc(var(--node) / 2 - 0.5px);
+      top: calc(var(--node) + 0.35rem);
+      bottom: -0.1rem;
+      width: 1px;
+      background: var(--line);
+      transform-origin: top;
+    }
+
+    .step:last-child::before {
+      display: none;
+    }
+
+    .step-node {
+      position: absolute;
+      left: 0;
+      top: 0.2rem;
+      width: var(--node);
+      height: var(--node);
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1.5px solid var(--done);
+      color: var(--done);
+      background: var(--bg);
+    }
+
+    .step-node svg {
+      width: 0.7rem;
+      height: 0.7rem;
+    }
+
+    .step-node path {
+      stroke-dasharray: 11;
+      stroke-dashoffset: 0;
+    }
+
+    .step.open .step-node {
+      border-color: var(--accent);
+    }
+
+    /* The trace "runs" once when it scrolls into view: each step waits for the one above
+       (--i is the step's position, set by the script at the end of the page). */
+    .motion .trace .step::before {
+      transition: transform 0.4s ease-out calc(var(--i, 0) * 0.42s + 0.2s);
+    }
+
+    .motion .trace .step-node {
+      transition: border-color 0.25s ease-out calc(var(--i, 0) * 0.42s);
+    }
+
+    .motion .trace .step-node path {
+      transition: stroke-dashoffset 0.3s ease-out calc(var(--i, 0) * 0.42s + 0.05s);
+    }
+
+    .motion .trace:not(.ran) .step::before {
+      transform: scaleY(0);
+    }
+
+    .motion .trace:not(.ran) .step:not(.open) .step-node {
+      border-color: var(--line);
+    }
+
+    .motion .trace:not(.ran) .step-node path {
+      stroke-dashoffset: 11;
+    }
+
+    .step-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0 1.5rem;
+    }
+
+    .step-org {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.12rem;
+      line-height: 1.5;
+    }
+
+    .step-org a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .step-org a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .step-when {
+      font-family: var(--display);
+      font-size: 0.92rem;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .step-role {
+      margin: 0.1rem 0 0;
+      font-style: italic;
+    }
+
+    .step-notes {
+      margin: 0.6rem 0 0;
+      padding: 0 0 0 1.1rem;
+      list-style: disc;
+      max-width: 38rem;
+      font-size: 0.98rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .step-notes li+li {
+      margin-top: 0.3rem;
+    }
+
+    /* ----------------------------------------------------------------------
+       Gallery
+       ---------------------------------------------------------------------- */
+    .block[hidden] {
+      display: none;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+      gap: 1.75rem 1.25rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .shot>a {
+      display: block;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 0.5rem;
+      background: var(--line);
+      cursor: zoom-in;
+    }
+
+    .shot>a:hover {
+      border-color: var(--accent);
+    }
+
+    .shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .shot-title {
+      margin: 0.65rem 0 0;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.98rem;
+      line-height: 1.4;
+    }
+
+    .shot-meta {
+      margin: 0.1rem 0 0;
+      font-size: 0.92rem;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    /* ----------------------------------------------------------------------
+       Figure and photo viewer
+       ---------------------------------------------------------------------- */
+    .lightbox {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      max-width: none;
+      max-height: none;
+      margin: 0;
+      padding: 4rem 1.25rem 1.5rem;
+      border: 0;
+      background: transparent;
+      color: #E8EEF6;
+      /* always sits on the dark backdrop */
+      cursor: zoom-out;
+    }
+
+    .lightbox[open] {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .lightbox::backdrop {
+      background: rgba(8, 14, 22, 0.86);
+    }
+
+    .lightbox img {
+      max-width: min(100%, 68rem);
+      max-height: calc(100dvh - 10rem);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 0.5rem;
+      background: #FFFFFF;
+      cursor: default;
+    }
+
+    .lightbox-caption {
+      margin: 0;
+      max-width: 44rem;
+      text-align: center;
+      font-family: var(--display);
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(232, 238, 246, 0.45);
+      border-radius: 999px;
+      background: transparent;
+      color: inherit;
+      font: 600 0.92rem var(--display);
+      cursor: pointer;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(232, 238, 246, 0.14);
+    }
+
+    .lightbox-close:focus-visible {
+      outline: 2px solid #E8EEF6;
+      outline-offset: 3px;
+    }
+
+    .lightbox-step {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: grid;
+      place-items: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      border: 1px solid rgba(232, 238, 246, 0.45);
+      border-radius: 50%;
+      background: rgba(8, 14, 22, 0.55);
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .lightbox-step[hidden] {
+      display: none;
+    }
+
+    .lightbox-step.prev {
+      left: 1.25rem;
+    }
+
+    .lightbox-step.next {
+      right: 1.25rem;
+    }
+
+    .lightbox-step:hover {
+      background: rgba(232, 238, 246, 0.18);
+    }
+
+    .lightbox-step:focus-visible {
+      outline: 2px solid #E8EEF6;
+      outline-offset: 3px;
+    }
+
+    .lightbox-step svg {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .motion .lightbox[open] {
+      animation: lightbox-in 0.18s ease-out;
+    }
+
+    @keyframes lightbox-in {
+      from {
+        opacity: 0;
+        transform: scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* ----------------------------------------------------------------------
+       Footer
+       ---------------------------------------------------------------------- */
+    .foot {
+      padding-top: 1.75rem;
+      font-family: var(--display);
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* ----------------------------------------------------------------------
+       Small screens
+       ---------------------------------------------------------------------- */
+    @media (max-width: 52rem) {
+      .block {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1rem;
+      }
+
+      .block>h2 {
+        position: static;
+      }
+    }
+
+    @media (max-width: 40rem) {
+      body {
+        font-size: 1rem;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        align-items: start;
+      }
+
+      .hero-photo {
+        order: -1;
+        width: 6.5rem;
+        border-radius: 1.25rem;
+      }
+
+      .pub {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .pub-figure {
+        max-width: 22rem;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem 0.9rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .live {
+        animation: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <table
-    style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-    <tbody>
-      <tr style="padding:0px">
-        <td style="padding:0px">
-          <table
-            style="width:97%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr style="padding:0px">
-                <td style="padding:2.5%;width:63%;vertical-align:middle">
-                  <p class="name" style="text-align: center;">
-                    Kyumin Kim
-                  </p>
-                  <p>
-                    I am a Researcher at <a href="https://www.lgcns.com/kr">LG CNS</a> Multi-Modal Intelligence Lab. I
-                    received my M.S. in the Graduate School of Artificial Intelligence (GSAI) at <a
-                      href="https://postech.ac.kr/eng/">POSTECH</a>. During my M.S., I was a member of the <a
-                      href="https://sites.google.com/view/mlvlab/">Machine Learning and Vision Group</a> advised by
-                    Prof. <a href="https://sites.google.com/view/kimki">Kwang In Kim</a>. Previously, I received my
-                    bachelor's degree in Statistics from <a href="https://www.korea.edu/sites/en/index.do">Korea
-                      University (KU)</a>. At LG CNS, I build synthetic training data and benchmarks for LLM agents as
-                    part of Korea's Sovereign Al Foundation Model (a.k.a. 독파모) Project. My current interests include
-                    agentic Al, instruction following, and reinforcement learning with verifiable rewards.
-                  </p>
-                  <p style="text-align:center">
-                    <a href="mailto:kyuminkim@postech.ac.kr">Email</a> &nbsp;/&nbsp;
-                    <a href="data/CV_2611.pdf">CV</a> &nbsp;/&nbsp;
-                    <!-- <a href="data/JonBarron-bio.txt">Bio</a> &nbsp;/&nbsp; -->
-                    <a href="https://scholar.google.com/citations?hl=en&user=uNJxbNAAAAAJ">Scholar</a> &nbsp;/&nbsp;
-                    <a href="https://www.linkedin.com/in/규민-김-223697274/?locale=en_US">LinkedIn</a> &nbsp;/&nbsp;
-                    <a href="https://github.com/km9mn/">Github</a>
-                  </p>
-                </td>
-                <td style="padding:2.5%;width:37%;max-width:37%">
-                  <a href="images/profile.jpg"><img
-                      style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo"
-                      src="images/profile.jpg" class="hoverZoomLink"></a>
+  <div class="page">
 
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:16px;width:100%;vertical-align:middle">
-                  <h2>Research</h2>
-                  <p>
-                    I am interested in agentic Al, with a focus on how data shapes what agents can do: synthetic data
-                    generation, verifiable rewards, and evaluation. I recently built a multi-step tool-calling benchmark
-                    and data-synthesis recipe over Korean public APIs, and the resulting data was used to train K-EXAONE
-                    2.0. I am now building RLVR data for coding agents, focusing on instruction following in spec-driven
-                    development. Earlier, I worked on retrieval and reasoning over structured data such as tables.
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
+    <header class="hero">
+      <div>
+        <h1>Kyumin Kim</h1>
+        <p class="hero-lede">
+          AI researcher at LG CNS. I build synthetic training data and benchmarks for LLM agents.
+        </p>
+        <p class="hero-now">
+          <span class="live" aria-hidden="true"></span>
+          <span>Currently building RLVR data for coding agents, focused on instruction following in spec-driven
+            development.</span>
+        </p>
+        <ul class="hero-links">
+          <li><a class="cv" href="data/CV_261121.pdf">View CV</a></li>
+          <li><a href="mailto:kyuminkim@postech.ac.kr">Email</a></li>
+          <li><a href="https://scholar.google.com/citations?hl=en&user=uNJxbNAAAAAJ">Google Scholar</a></li>
+          <li><a href="https://www.linkedin.com/in/kyuminkim101">LinkedIn</a></li>
+          <li><a href="https://github.com/km9mn/">GitHub</a></li>
+        </ul>
+      </div>
+      <img class="hero-photo" src="images/profile.jpg" alt="Portrait of Kyumin Kim" width="480" height="480">
+    </header>
 
-              <tr onmouseout="bog_stop()" onmouseover="bog_start()">
-                <td style="padding:16px;width:20%;vertical-align:middle">
-                  <div class="one" style="margin-top: 30px; width: 100%; height: auto;">
-                    <img src='images/KOPA.jpeg' style="width: 100%; height: auto; object-fit: contain;">
-                  </div>
-                  <script type="text/javascript">
-                    function bog_start() {
-                      document.getElementById('bog_image').style.opacity = "1";
-                    }
+    <main>
 
-                    function bog_stop() {
-                      document.getElementById('bog_image').style.opacity = "0";
-                    }
-                    bog_stop()
-                  </script>
-                </td>
-                <td style="padding:8px;width:30%;vertical-align:middle">
-                  <a href="https://aclanthology.org/2026.emnlp-industry.237/">
-                    <span class="papertitle">Multi-Step Tool-Calling over Korean Open Public APIs: A Benchmark and a
-                      Data-Synthesis Recipe
-                    </span>
-                  </a>
-                  <br>
-                  Dain Kim*, Eungi Cho*,
-                  <strong>Kyumin Kim*</strong>,
-                  Shinyeong Noh*, Kyuseong Lim*
-                  <br>
-                  <em>EMNLP 2026 Industry Track (Oral Presentation)</em>
-                  <br>
-                  <!-- <a href="https://creiser.github.io/binary_opacity_grid/">project page</a> -->
-                  <!-- / -->
-                  <!-- <a href="https://www.youtube.com/watch?v=2TPUmGRg8bM">video</a> -->
-                  <!-- / -->
-                  <a href="https://arxiv.org/abs/2609.05395">arXiv</a>
-                  <p></p>
-                  <p>
-                    <!-- Applying anti-aliasing to a discrete opacity grid lets you render a hard representation into a soft image, and this enables highly-detailed mesh recovery. -->
-                  </p>
-                </td>
-              </tr>
+      <section class="block" id="about">
+        <h2>About</h2>
+        <div class="prose">
+          <p>
+            I am a Researcher at <a href="https://www.lgcns.com/kr">LG CNS</a> Multi-Modal Intelligence Lab. I
+            received my M.S. in the Graduate School of Artificial Intelligence (GSAI) at
+            <a href="https://postech.ac.kr/eng/">POSTECH</a>. During my M.S., I was a member of the
+            <a href="https://sites.google.com/view/mlvlab/">Machine Learning and Vision Group</a> advised by
+            Prof. <a href="https://sites.google.com/view/kimki">Kwang In Kim</a>. Previously, I received my
+            bachelor’s degree in Statistics from
+            <a href="https://www.korea.edu/sites/en/index.do">Korea University (KU)</a>.
+          </p>
+          <p>
+            At LG CNS, I build synthetic training data and benchmarks for LLM agents as part of Korea’s Sovereign AI
+            Foundation Model (a.k.a. <span lang="ko">독파모</span>) Project. My current interests include agentic AI,
+            instruction following, and reinforcement learning with verifiable rewards.
+          </p>
+        </div>
+      </section>
 
-              <tr onmouseout="bog_stop()" onmouseover="bog_start()">
-                <td style="padding:16px;width:20%;vertical-align:middle">
-                  <div class="one" style="margin-top: 30px; width: 100%; height: auto;">
-                    <img src='images/pieta.jpg' style="width: 100%; height: auto; object-fit: contain;">
-                  </div>
-                  <script type="text/javascript">
-                    function bog_start() {
-                      document.getElementById('bog_image').style.opacity = "1";
-                    }
+      <section class="block" id="research">
+        <h2>Research</h2>
+        <div class="prose">
+          <p>
+            I am interested in agentic AI, with a focus on how data shapes what agents can do: synthetic data
+            generation, verifiable rewards, and evaluation. I recently built a multi-step tool-calling benchmark
+            and data-synthesis recipe over Korean public APIs, and the resulting data was used to train K-EXAONE
+            2.0. I am now building RLVR data for coding agents, focusing on instruction following in spec-driven
+            development. Earlier, I worked on retrieval and reasoning over structured data such as tables.
+          </p>
+        </div>
+      </section>
 
-                    function bog_stop() {
-                      document.getElementById('bog_image').style.opacity = "0";
-                    }
-                    bog_stop()
-                  </script>
-                </td>
-                <td style="padding:8px;width:30%;vertical-align:middle">
-                  <a href="https://aclanthology.org/2026.acl-long.1460/">
-                    <span class="papertitle">Piece of Table: A Divide-and-Conquer Approach for Selecting Subtables in
-                      Table Question Answering
-                    </span>
-                  </a>
-                  <br>
-                  <a href="https://wonjin0403.github.io/wonjin/">Wonjin Lee*</a>,
-                  <strong>Kyumin Kim*</strong>,
-                  <a href="https://ubless607.github.io/aboutme/">Sungjae Lee</a>,
-                  Jihun Lee,
+      <section class="block" id="publications">
+        <h2>Publications</h2>
+        <div>
+          <ul class="pubs">
+
+            <li class="pub">
+              <div class="pub-body">
+                <p class="pub-venue">EMNLP 2026 Industry Track <span>(oral presentation)</span></p>
+                <h3 class="pub-title">
+                  <a href="https://aclanthology.org/2026.emnlp-industry.237/">Multi-Step Tool-Calling over Korean
+                    Open Public APIs: A Benchmark and a Data-Synthesis Recipe</a>
+                </h3>
+                <p class="pub-authors">
+                  Dain Kim*, Eungi Cho*, <strong>Kyumin Kim*</strong>, Shinyeong Noh*, Kyuseong Lim*
+                </p>
+                <ul class="pub-links">
+                  <li><a href="https://aclanthology.org/2026.emnlp-industry.237/">Paper</a></li>
+                  <li><a href="https://arxiv.org/abs/2609.05395">arXiv</a></li>
+                </ul>
+              </div>
+              <a class="pub-figure" href="images/KOPA.jpeg" aria-label="View the full figure for this paper"
+                data-caption="Multi-Step Tool-Calling over Korean Open Public APIs (EMNLP 2026 Industry Track)"
+                data-alt="Two tool-calling trajectories for the same question: a small model fails after an API key error, and a fine-tuned model retrieves the key, pages through the results and answers correctly.">
+                <img class="crop" src="images/KOPA.jpeg" alt="" loading="lazy" width="1572" height="1790">
+              </a>
+            </li>
+
+            <li class="pub">
+              <div class="pub-body">
+                <p class="pub-venue">ACL 2026</p>
+                <h3 class="pub-title">
+                  <a href="https://aclanthology.org/2026.acl-long.1460/">Piece of Table: A Divide-and-Conquer
+                    Approach for Selecting Subtables in Table Question Answering</a>
+                </h3>
+                <p class="pub-authors">
+                  <a href="https://wonjin0403.github.io/wonjin/">Wonjin Lee*</a>, <strong>Kyumin Kim*</strong>,
+                  <a href="https://ubless607.github.io/aboutme/">Sungjae Lee</a>, Jihun Lee,
                   <a href="https://sites.google.com/view/kimki">Kwang In Kim</a>
-                  <br>
-                  <em>ACL 2026</em>
-                  <br>
-                  <a href="https://mlv-group.github.io/Piece-of-Table/">project page</a>
-                  /
-                  <!-- <a href="https://www.youtube.com/watch?v=2TPUmGRg8bM">video</a> -->
-                  <!-- / -->
-                  <a href="https://arxiv.org/abs/2412.07629">arXiv</a>
-                  <p></p>
-                  <p>
-                    <!-- Applying anti-aliasing to a discrete opacity grid lets you render a hard representation into a soft image, and this enables highly-detailed mesh recovery. -->
-                  </p>
-                </td>
-              </tr>
+                </p>
+                <ul class="pub-links">
+                  <li><a href="https://aclanthology.org/2026.acl-long.1460/">Paper</a></li>
+                  <li><a href="https://mlv-group.github.io/Piece-of-Table/">Project page</a></li>
+                  <li><a href="https://arxiv.org/abs/2412.07629">arXiv</a></li>
+                </ul>
+              </div>
+              <a class="pub-figure" href="images/pieta.jpg" aria-label="View the full figure for this paper"
+                data-caption="Piece of Table (ACL 2026)"
+                data-alt="A language model picks the rows and columns of a large table that are needed to answer a question, producing a small subtable.">
+                <img class="fit" src="images/pieta.jpg" alt="" loading="lazy" width="2725" height="1310">
+              </a>
+            </li>
 
-              <tr onmouseout="bog_stop()" onmouseover="bog_start()">
-                <td style="padding:16px;width:20%;vertical-align:middle">
-                  <div class="one" style="margin-top: 30px;">
-                    <!-- <img src='images/Figure01.jpg' width=180%> -->
-                  </div>
-                  <script type="text/javascript">
-                    function bog_start() {
-                      document.getElementById('bog_image').style.opacity = "1";
-                    }
+            <li class="pub no-figure">
+              <div class="pub-body">
+                <p class="pub-venue">Scientific Reports <span>2024</span></p>
+                <h3 class="pub-title">
+                  <a href="https://www.nature.com/articles/s41598-024-64590-8">Machine learning analysis with
+                    population data for prepregnancy and perinatal risk factors for the neurodevelopmental delay of
+                    offspring</a>
+                </h3>
+                <p class="pub-authors">
+                  <a href="https://scholar.google.com/citations?hl=ko&user=39j7siwAAAAJ">Seung-Woo Yang*</a>,
+                  <a href="https://scholar.google.com/citations?hl=ko&user=woYt858AAAAJ">Kwang-Sig Lee*</a>,
+                  Ju Sun Heo, Eun-Saem Choi, <strong>Kyumin Kim</strong>, Sohee Lee,
+                  <a href="https://faculty.korea.ac.kr/kufaculty/ahnkihoon/index.do">Ki Hoon Ahn</a>
+                </p>
+                <ul class="pub-links">
+                  <li><a href="https://www.nature.com/articles/s41598-024-64590-8">Paper</a></li>
+                </ul>
+              </div>
+            </li>
 
-                    function bog_stop() {
-                      document.getElementById('bog_image').style.opacity = "0";
-                    }
-                    bog_stop()
-                  </script>
-                </td>
-                <td style="padding:8px;width:30%;vertical-align:middle">
-                  <a href="https://www.nature.com/articles/s41598-024-64590-8">
-                    <span class="papertitle">Machine learning analysis with population data for prepregnancy and
-                      perinatal risk factors for the neurodevelopmental delay of offspring
-                    </span>
-                    <!-- </a> -->
-                    <br>
-                    <a href="https://scholar.google.com/citations?hl=ko&user=39j7siwAAAAJ">Seung-Woo Yang*</a>,
-                    <a href="https://scholar.google.com/citations?hl=ko&user=woYt858AAAAJ">Kwang-Sig Lee*</a>,
-                    Ju Sun Heo,
-                    Eun-Saem Choi,
-                    <strong>Kyumin Kim</strong>,
-                    Sohee Lee,
-                    <a href="https://faculty.korea.ac.kr/kufaculty/ahnkihoon/index.do">Ki Hoon Ahn</a>
-                    <br>
-                    <em>Scientific Reports</em>, 2024
-                    <br>
-                    <!-- <a href="https://creiser.github.io/binary_opacity_grid/">project page</a> -->
-                    <!-- / -->
-                    <!-- <a href="https://www.youtube.com/watch?v=2TPUmGRg8bM">video</a> -->
-                    <!-- / -->
-                    <!-- <a href="https://arxiv.org/abs/2412.07629">arXiv</a> -->
-                    <p></p>
-                    <p>
-                      <!-- Applying anti-aliasing to a discrete opacity grid lets you render a hard representation into a soft image, and this enables highly-detailed mesh recovery. -->
-                    </p>
-                </td>
-              </tr>
+          </ul>
+          <p class="footnote">* Equal contribution.</p>
+        </div>
+      </section>
 
-            </tbody>
-          </table>
+      <section class="block" id="experience">
+        <h2>Experience</h2>
+        <ol class="trace">
 
+          <li class="step open">
+            <span class="step-node" aria-hidden="true"><span class="live"></span></span>
+            <div class="step-head">
+              <h3 class="step-org"><a href="https://www.lgcns.com/kr">LG CNS</a></h3>
+              <span class="step-when">Jan 2026 to present</span>
+            </div>
+            <p class="step-role">AI Researcher, Multi-Modal Intelligence Lab</p>
+            <ul class="step-notes">
+              <li>Contributing to Korea’s Sovereign AI Foundation Model Project as part of the LG AI Research
+                consortium.</li>
+              <li>Built synthetic multi-step tool-calling data that was used to train K-EXAONE 2.0.</li>
+              <li>Building RLVR data for coding agents, focused on instruction following in spec-driven
+                development.</li>
+            </ul>
+          </li>
 
-          <!-- <table style="width:100%; margin:0 auto; border:0; border-spacing:0; padding:16px;"><tbody>
-            <tr>
-              <td>
-                <h2>Miscellanea</h2>
-              </td>
-            </tr>
-          </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            
-           
-            <tr>
-              <td align="center" style="padding:16px;width:20%;vertical-align:middle">
-						     <div class="colored-box" style="background-color: #fcb97d;">
-								 <h2>Micropapers</h2>
-								 </div>
-              </td>
-              <td style="padding:8px;width:80%;vertical-align:middle">
-                <a href="https://arxiv.org/abs/2112.11687">Squareplus: A Softplus-Like Algebraic Rectifier</a>
-                <br>
-                <a href="https://arxiv.org/abs/2010.09714">A Convenient Generalization of Schlick's Bias and Gain Functions</a>
-                <br>
-                <a href="https://arxiv.org/abs/1704.07483">Continuously Differentiable Exponential Linear Units</a>
-                <br>
-                <a href="https://jonbarron.info/data/cvpr2023_llm_workshop_annotated.pdf">Scholars & Big Models: How Can Academics Adapt?</a>
-              </td>
-            </tr>
+          <li class="step">
+            <span class="step-node" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M2.5 6.5l2.4 2.4 4.6-5.3" />
+              </svg>
+            </span>
+            <div class="step-head">
+              <h3 class="step-org">MakinaRocks</h3>
+              <span class="step-when">Aug 2025 to Dec 2025</span>
+            </div>
+            <p class="step-role">Forward Deployed Engineer (Intern), FD Agent Team</p>
+            <ul class="step-notes">
+              <li>Developed a DBQA agent for a Software-Defined Factory project on an EV battery production
+                line.</li>
+            </ul>
+          </li>
 
+          <li class="step">
+            <span class="step-node" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M2.5 6.5l2.4 2.4 4.6-5.3" />
+              </svg>
+            </span>
+            <div class="step-head">
+              <h3 class="step-org"><a href="https://postech.ac.kr/eng/">POSTECH</a></h3>
+              <span class="step-when">Sep 2023 to Aug 2025</span>
+            </div>
+            <p class="step-role">M.S., Graduate School of Artificial Intelligence</p>
+            <ul class="step-notes">
+              <li>Member of the <a href="https://sites.google.com/view/mlvlab/">Machine Learning and Vision
+                  Group</a>, advised by <a href="https://sites.google.com/view/kimki">Kwang In Kim</a>.</li>
+              <li>Worked on the Samsung Electronics DS AI Center and POSTECH project “Multimodal Foundation Model:
+                Mitigating Hallucination with RAG Specialized for Semiconductor-Domain Data.”</li>
+            </ul>
+          </li>
 
-            <tr>
-              <td align="center" style="padding:16px;width:20%;vertical-align:middle">
-						     <div class="colored-box" style="background-color: #aaba9e;">
-								 <h2>Recorded Talks</h2>
-								 </div>
-              </td>
-              <td style="padding:8px;width:80%;vertical-align:center">
-                <a href="https://www.youtube.com/watch?v=h9vq_65eDas">View Dependent Podcast, 2024</a>
-								<br>
-                <a href="https://www.youtube.com/watch?v=4tDhYsFuEqo">Bay Area Robotics Symposium, 2023
-</a>
-								<br>
-                <a href="https://youtu.be/TvWkwDYtBP4?t=7604">EGSR Keynote, 2021</a>
-								<br>
-								<a href="https://www.youtube.com/watch?v=nRyOzHpcr4Q">TUM AI Lecture Series, 2020</a>
-								<br>
-								<a href="https://www.youtube.com/watch?v=HfJpQCBTqZs">Vision & Graphics Seminar at MIT, 2020</a>
-              </td>
-            </tr>
+          <li class="step">
+            <span class="step-node" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M2.5 6.5l2.4 2.4 4.6-5.3" />
+              </svg>
+            </span>
+            <div class="step-head">
+              <h3 class="step-org">AI Center, Korea University Anam Hospital</h3>
+              <span class="step-when">Sep 2022 to Jun 2023</span>
+            </div>
+            <p class="step-role">Research Assistant</p>
+            <ul class="step-notes">
+              <li>Studied pregnancy and prenatal predictors for the neurodevelopment of school-aged
+                children.</li>
+            </ul>
+          </li>
 
-            <tr>
-              <td align="center" style="padding:16px;width:20%;vertical-align:middle">
-						     <div class="colored-box" style="background-color: #c6b89e;">
-								 <h2>Academic Service</h2>
-								 </div>
-              </td>
-              <td style="padding:8px;width:80%;vertical-align:center">
-                <a href="https://iccv.thecvf.com/">Lead Area Chair, ICCV 2025</a>
-                <br>
-                <a href="https://cvpr.thecvf.com/Conferences/2025/Organizers">Lead Area Chair, CVPR 2025</a>
-                <br>
-                <a href="https://cvpr.thecvf.com/Conferences/2024/Organizers">Area Chair, CVPR 2024</a>
-                <br>
-                <a href="https://cvpr2023.thecvf.com/Conferences/2023/Organizers">Demo Chair, CVPR 2023</a>
-                <br>
-                <a href="https://cvpr2022.thecvf.com/area-chairs">Area Chair, CVPR 2022</a>
-                <br>
-                <a href="http://cvpr2021.thecvf.com/area-chairs">Area Chair & Award Committee Member, CVPR 2021</a>
-                <br>
-                <a href="http://cvpr2019.thecvf.com/area_chairs">Area Chair, CVPR 2019</a>
-                <br>
-                <a href="http://cvpr2018.thecvf.com/organizers/area_chairs">Area Chair, CVPR 2018</a>
-              </td>
-            </tr>
-						
-						
-           
-            <tr>
-              <td align="center" style="padding:16px;width:20%;vertical-align:middle">
-						     <div class="colored-box" style="background-color: #edd892;">
-								 <h2>Teaching</h2>
-								 </div>
-              </td>
-              <td style="padding:8px;width:80%;vertical-align:center">
-                <a href="http://inst.eecs.berkeley.edu/~cs188/sp11/announcements.html">Graduate Student Instructor, CS188 Spring 2011</a>
-                <br>
-                <a href="http://inst.eecs.berkeley.edu/~cs188/fa10/announcements.html">Graduate Student Instructor, CS188 Fall 2010</a>
-                <br>
-                <a href="http://aima.cs.berkeley.edu/">Figures, "Artificial Intelligence: A Modern Approach", 3rd Edition</a>
-              </td>
-            </tr>
-            
-          </tbody></table> -->
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:0px">
-                  <br>
-                  <p style="text-align:right;font-size:small;">
-                    You've probably seen this website template before, thanks to <a
-                      href="https://github.com/jonbarron/jonbarron_website">Jon Barron</a>.
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-  </table>
+          <li class="step">
+            <span class="step-node" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M2.5 6.5l2.4 2.4 4.6-5.3" />
+              </svg>
+            </span>
+            <div class="step-head">
+              <h3 class="step-org"><a href="https://www.korea.edu/sites/en/index.do">Korea University</a></h3>
+              <span class="step-when">Mar 2017 to Aug 2023</span>
+            </div>
+            <p class="step-role">B.Econ., Department of Statistics</p>
+          </li>
+
+        </ol>
+      </section>
+
+      <!--
+        Gallery. To add a photo: put the file in images/gallery/ and copy one <li class="shot"> block,
+        then edit the two file paths, the alt text and the two caption lines.
+        Resize photos to about 1600px on the long side first, so the page stays fast.
+        A photo whose file is missing is left out automatically, and the whole section hides itself
+        while it has no photos, so it is safe to publish before the files are there.
+      -->
+      <section class="block" id="gallery">
+        <h2>Gallery</h2>
+        <ul class="gallery">
+
+          <li class="shot">
+            <a href="images/gallery/emnlp2026-talk.jpg"
+              data-caption="EMNLP 2026, oral presentation in the Industry Track">
+              <img src="images/gallery/emnlp2026-talk.jpg" alt="Kyumin Kim giving a talk at EMNLP 2026" loading="lazy">
+            </a>
+            <p class="shot-title">EMNLP 2026</p>
+            <p class="shot-meta">Oral presentation, Industry Track</p>
+          </li>
+
+          <li class="shot">
+            <a href="images/gallery/emnlp2026-venue.jpg" data-caption="EMNLP 2026, at the venue">
+              <img src="images/gallery/emnlp2026-venue.jpg" alt="Kyumin Kim at the EMNLP 2026 venue" loading="lazy">
+            </a>
+            <p class="shot-title">EMNLP 2026</p>
+            <p class="shot-meta">At the venue</p>
+          </li>
+
+          <li class="shot">
+            <a href="images/gallery/acl2026.jpg" data-caption="ACL 2026">
+              <img src="images/gallery/acl2026.jpg" alt="Kyumin Kim at ACL 2026" loading="lazy">
+            </a>
+            <p class="shot-title">ACL 2026</p>
+            <p class="shot-meta">Main conference</p>
+          </li>
+
+        </ul>
+      </section>
+
+    </main>
+
+    <footer class="foot">
+      Last updated November 2026.
+    </footer>
+
+  </div>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Image viewer">
+    <form method="dialog">
+      <button class="lightbox-close">Close</button>
+    </form>
+    <button class="lightbox-step prev" type="button" aria-label="Previous photo" hidden>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <path d="M10 3L5 8l5 5" />
+      </svg>
+    </button>
+    <img src="" alt="">
+    <button class="lightbox-step next" type="button" aria-label="Next photo" hidden>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 3l5 5-5 5" />
+      </svg>
+    </button>
+    <p class="lightbox-caption"></p>
+  </dialog>
+
+  <script>
+    // Experience trace: runs once, the first time it scrolls into view.
+    (function () {
+      var trace = document.querySelector('.trace');
+      if (!trace) return;
+      trace.querySelectorAll('.step').forEach(function (step, i) {
+        step.style.setProperty('--i', i);
+      });
+      if (!('IntersectionObserver' in window)) { trace.classList.add('ran'); return; }
+      var seen = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) {
+          trace.classList.add('ran');
+          seen.disconnect();
+        }
+      }, { rootMargin: '0px 0px -25% 0px' });
+      seen.observe(trace);
+    })();
+
+    // Gallery: leave out photos whose file is missing, and hide the section when none are left.
+    (function () {
+      var gallery = document.getElementById('gallery');
+      if (!gallery) return;
+      var shots = Array.prototype.slice.call(gallery.querySelectorAll('.shot'));
+      var left = shots.length;
+      function drop(shot) {
+        if (!shot.parentNode) return;
+        shot.parentNode.removeChild(shot);
+        left -= 1;
+        if (left === 0) gallery.hidden = true;
+      }
+      if (left === 0) gallery.hidden = true;
+      shots.forEach(function (shot) {
+        var photo = shot.querySelector('img');
+        if (photo.complete && photo.naturalWidth === 0) drop(shot);
+        else photo.addEventListener('error', function () { drop(shot); });
+      });
+    })();
+
+    // Viewer for paper figures and gallery photos.
+    // Without JS the thumbnail simply links to the image file.
+    (function () {
+      var box = document.getElementById('lightbox');
+      if (!box || typeof box.showModal !== 'function') return;
+      var img = box.querySelector('img');
+      var caption = box.querySelector('.lightbox-caption');
+      var prev = box.querySelector('.prev');
+      var next = box.querySelector('.next');
+      var set = [];   // the images you can step through from the one that was opened
+      var at = 0;
+
+      function show(i) {
+        at = (i + set.length) % set.length;
+        var link = set[at];
+        img.src = link.getAttribute('href');
+        img.alt = link.dataset.alt || (link.querySelector('img') || {}).alt || '';
+        caption.textContent = (link.dataset.caption || '') +
+          (set.length > 1 ? ' (' + (at + 1) + ' of ' + set.length + ')' : '');
+      }
+
+      document.addEventListener('click', function (event) {
+        var link = event.target.closest ? event.target.closest('a.pub-figure, .shot > a') : null;
+        if (!link) return;
+        event.preventDefault();
+        // gallery photos step through each other; a paper figure opens on its own
+        var group = link.closest('.gallery');
+        set = group ? Array.prototype.slice.call(group.querySelectorAll('.shot > a')) : [link];
+        prev.hidden = next.hidden = set.length < 2;
+        show(set.indexOf(link));
+        box.showModal();
+      });
+      prev.addEventListener('click', function () { show(at - 1); });
+      next.addEventListener('click', function () { show(at + 1); });
+      box.addEventListener('keydown', function (event) {
+        if (set.length < 2) return;
+        if (event.key === 'ArrowLeft') { event.preventDefault(); show(at - 1); }
+        if (event.key === 'ArrowRight') { event.preventDefault(); show(at + 1); }
+      });
+      // a click on the dark area around the image closes the viewer
+      box.addEventListener('click', function (event) { if (event.target === box) box.close(); });
+    })();
+  </script>
 </body>
 
 </html>
